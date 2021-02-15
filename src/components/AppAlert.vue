@@ -2,7 +2,7 @@
     <div class="alert" :class="type">
         <p class="alert-title">{{title}}</p>
         <p>{{text}}</p>
-        <button class="btn" :class="type" v-if="closable" @click="$emit('close')">{{title}}</button>
+        <button class="btn" :class="type" v-if="closable" @click="$emit('close')">Закрыть</button>
     </div>
 </template>
 <script>

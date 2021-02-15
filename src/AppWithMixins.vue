@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <app-alert
       v-if="alert"
       text="Это очень важное сообщение, будьте бдительны"
@@ -10,16 +10,11 @@
     ></app-alert>
     
     <div class="card">
+      <!-- <button class="btn primary" @click="alert = true">Показать сообщение</button> -->
       <button class="btn primary" @click="toggleAlert">{{ alert ? 'Скрыть' : 'Показать'}} сообщение</button>
+      
     </div>
     <app-block></app-block>
-    <!-- <div class="card">
-        <h2 v-color>Разговор про директивы</h2>
-        <div class="form-control">
-            <label for="inp">Активный по умолчанию</label>
-            <input v-focus type="text" id="inp"/>
-        </div>
-    </div> -->
   </div>
 </template>
 
@@ -27,8 +22,6 @@
 import AppAlert from './components/AppAlert.vue'
 import AppBlock from './components/AppBlock.vue'
 import alertMixin from './alertMixin'
-import focusDirective from './focusDirective'
-import colorDirective from './colorDirective'
 
 export default {
 //   data(){
@@ -46,15 +39,6 @@ export default {
     AppAlert,
     AppBlock
   }
-    // directives:{
-        // focus:{
-        //     mounted(el){
-        //         el.focus()
-        //     }
-        // }
-    //     focus:focusDirective,
-    //     color:colorDirective
-    // }
 }
 </script>
 
