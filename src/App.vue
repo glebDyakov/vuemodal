@@ -1,32 +1,39 @@
 <template>
   <div class="container">
-    <app-alert
+    <!-- <app-alert
       v-if="alert"
       text="Это очень важное сообщение, будьте бдительны"
       title="Внимание!"
       type="danger"
       :closable="true"
       @close="alert = false"
-    ></app-alert>
+    ></app-alert> -->
     
-    <div class="card">
+    <!-- <div class="card">
       <button class="btn primary" @click="toggleAlert">{{ alert ? 'Скрыть' : 'Показать'}} сообщение</button>
     </div>
-    <app-block></app-block>
-    <!-- <div class="card">
-        <h2 v-color>Разговор про директивы</h2>
+    <app-block></app-block> -->
+    <div class="card" v-if="show">
+        <!-- <h2 v-color="'darkred'">Мигающий текст</h2> -->
+        <!-- <h2 v-color="myColor">Мигающий текст</h2> -->
+        <!-- <h2 v-color:color="myColor">Мигающий текст</h2> -->
+        <!-- <h2 v-color:backgroundColor="myColor">Мигающий текст</h2> -->
+        <h2 v-color:[type].blink.hover="myColor">Мигающий подсвечивающийся текст</h2>
+
         <div class="form-control">
             <label for="inp">Активный по умолчанию</label>
             <input v-focus type="text" id="inp"/>
         </div>
-    </div> -->
+        <button class="btn" @click="myColor = 'darkblue'">Сделать синим!</button>
+        <button class="btn" @click="type = type === 'color' ? 'backgroundColor' : 'color'">Переключить тип!</button>
+    </div>
   </div>
 </template>
 
 <script>
-import AppAlert from './components/AppAlert.vue'
-import AppBlock from './components/AppBlock.vue'
-import alertMixin from './alertMixin'
+// import AppAlert from './components/AppAlert.vue'
+// import AppBlock from './components/AppBlock.vue'
+// import alertMixin from './alertMixin'
 import focusDirective from './focusDirective'
 import colorDirective from './colorDirective'
 
@@ -41,20 +48,32 @@ export default {
 //           this.alert= !this.alert
 //       }
 //   },
-  mixins:[alertMixin],
-  components: {
-    AppAlert,
-    AppBlock
-  }
-    // directives:{
+//   mixins:[alertMixin],
+//   components: {
+//     AppAlert,
+//     AppBlock
+//   }
+    data(){
+        return {
+           type: 'color',
+           myColor: 'darkred',
+           show: true
+        }  
+    },
+    mounted(){
+        setTimeout(() => {
+            this.show = false
+        }, 10000)
+    },
+    directives:{
         // focus:{
         //     mounted(el){
         //         el.focus()
         //     }
         // }
-    //     focus:focusDirective,
-    //     color:colorDirective
-    // }
+        focus:focusDirective,
+        color:colorDirective
+    }
 }
 </script>
 
