@@ -13,12 +13,12 @@
       <button class="btn primary" @click="toggleAlert">{{ alert ? 'Скрыть' : 'Показать'}} сообщение</button>
     </div>
     <app-block></app-block> -->
-    <!-- <div class="card" v-if="show"> -->
+    <div class="card" v-if="show">
         <!-- <h2 v-color="'darkred'">Мигающий текст</h2> -->
         <!-- <h2 v-color="myColor">Мигающий текст</h2> -->
         <!-- <h2 v-color:color="myColor">Мигающий текст</h2> -->
         <!-- <h2 v-color:backgroundColor="myColor">Мигающий текст</h2> -->
-        <!-- <h2 v-color:[type].blink.hover="myColor">Мигающий подсвечивающийся текст</h2>
+        <h2 v-color:[type].blink.hover="myColor">Мигающий подсвечивающийся текст</h2>
 
         <div class="form-control">
             <label for="inp">Активный по умолчанию</label>
@@ -26,13 +26,6 @@
         </div>
         <button class="btn" @click="myColor = 'darkblue'">Сделать синим!</button>
         <button class="btn" @click="type = type === 'color' ? 'backgroundColor' : 'color'">Переключить тип!</button>
-    </div> -->
-    <div class="card">
-        
-        <h2>Текст со сменной языка</h2>
-        <button class="btn" @click="$alert('Wow It is working!')">Alert</button>
-        <h2>{{ $i18n('app.title') }}</h2>
-        <button class="btn" @click="changeLang">{{ $i18n('app.changeBtn') }}</button>
     </div>
   </div>
 </template>
@@ -41,8 +34,8 @@
 // import AppAlert from './components/AppAlert.vue'
 // import AppBlock from './components/AppBlock.vue'
 // import alertMixin from './alertMixin'
-// import focusDirective from './focusDirective'
-// import colorDirective from './colorDirective'
+import focusDirective from './focusDirective'
+import colorDirective from './colorDirective'
 
 export default {
 //   data(){
@@ -60,39 +53,28 @@ export default {
 //     AppAlert,
 //     AppBlock
 //   }
-    // data(){
-    //     return {
-    //        type: 'color',
-    //        myColor: 'darkred',
-    //        show: true
-    //     }  
-    // },
-    // mounted(){
-    //     setTimeout(() => {
-    //         this.show = false
-    //     }, 10000)
-    // },
-    // directives:{
+    data(){
+        return {
+           type: 'color',
+           myColor: 'darkred',
+           show: true
+        }  
+    },
+    mounted(){
+        setTimeout(() => {
+            this.show = false
+        }, 10000)
+    },
+    directives:{
         // focus:{
         //     mounted(el){
         //         el.focus()
         //     }
         // }
-    //     focus:focusDirective,
-    //     color:colorDirective
-    // }
-    
-    inject: ['changeI18N'],
-    mounted(){
-        this.$alert('hello')
-    },
-    methods:{
-        changeLang(){
-            this.changeI18N('en')
-            this.$forceUpdate()
-        }
+        focus:focusDirective,
+        color:colorDirective
     }
-    
+
 }
 </script>
 

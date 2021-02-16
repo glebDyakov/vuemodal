@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import translatePlugin from './translatePlugin'
 // import alertMixin from './alertMixin'
 
 // const alertMixin = {
@@ -22,4 +23,23 @@ import App from './App.vue'
 //         el.focus()
 //     }
 // }).mount('#app')
-createApp(App).mount('#app')
+
+const app = createApp(App)
+
+const ru = {
+    app: {
+        title:'Текст со сменной языка',
+        changeBtn: 'Переключить язык'
+    }
+}
+
+const en = {
+    app: {
+        title:'Text with change of language',
+        changeBtn: 'Toggle language'
+    }
+}
+
+app.use(translatePlugin, { ru, en })
+
+app.mount('#app')
