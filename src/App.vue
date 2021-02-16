@@ -33,6 +33,13 @@
         <button class="btn" @click="$alert('Wow It is working!')">Alert</button>
         <h2>{{ $i18n('app.title') }}</h2>
         <button class="btn" @click="changeLang">{{ $i18n('app.changeBtn') }}</button>
+        <button class="btn primary"  @click="modal = true">Открыть модальное окно</button>
+        <teleport to="body">
+            <app-modal v-if="modal"></app-modal>
+        </teleport>
+        <!-- <teleport to="#modal" disabled>
+            <app-modal v-if="modal"></app-modal>
+        </teleport> -->
     </div>
   </div>
 </template>
@@ -43,7 +50,7 @@
 // import alertMixin from './alertMixin'
 // import focusDirective from './focusDirective'
 // import colorDirective from './colorDirective'
-
+import AppModal from './components/AppModal.vue'
 export default {
 //   data(){
 //     return {
@@ -91,8 +98,15 @@ export default {
             this.changeI18N('en')
             this.$forceUpdate()
         }
+    },
+    data(){
+        return {
+            modal: false
+        }
+    },
+    components:{
+        AppModal
     }
-    
 }
 </script>
 
